@@ -223,7 +223,7 @@ function getLocations() {
 	}
 }
 
-function randomDestination() {
+function rollRandomCity() {
 	var redDie = getRandomInt(0, 2);
 	var whiteDie1 = getRandomInt(1, 7);
 	var whiteDie2 = getRandomInt(1, 7);
@@ -231,7 +231,11 @@ function randomDestination() {
 	redDie = getRandomInt(0, 2);
 	whiteDie1 = getRandomInt(1, 7);
 	whiteDie2 = getRandomInt(1, 7);
-	var citySelected = city[regionSelected][redDie][whiteDie1 + whiteDie2];
+	return city[regionSelected][redDie][whiteDie1 + whiteDie2];
+}
+
+function randomDestination() {
+	var citySelected = rollRandomCity();
 	$( "#Dest" ).html("You are traveling from " + $( "#StartList option:selected" ).text() + " to " + citySelected.name);
 	$( "#Pay" ).html("Your payout is " + getPayout(getValue($( "#StartList option:selected" ).text()), citySelected.value));
 }
@@ -261,18 +265,48 @@ function setUpCalc() {
 	document.getElementById('SetFeatures').onclick = fixedStart;
 }
 
+function updateNext(cities, travelid, payoutid) {
+	cities[0] = cities[1];
+	cities[1] = rollRandomCity();
+	$( travelid ).text("You are traveling from " + cities[0].name + " to " + cities[1].name);
+	$( payoutid ).text("Your payout is " + getPayout(cities[0].value, cities[1].value));
+	
+}
+
 function goButton() {
-	if ($( "#Initial option:selected").text() === "Calculator") {
+	if ($( "#Initial option:selected ").text() === "Calculator") {
 		setUpCalc();
 		$( "#StartList" ).removeAttr("hidden");
 		$( "#EndList" ).removeAttr("hidden");
 		$( "#SetFeatures" ).removeAttr("hidden");
 		$( "#NewDest" ).removeAttr("hidden");
 	} else {
-		
+		var cities = [null];
+		for (var i = 1; i <= parseInt($( "#Initial option:selected ").text()); i++) {
+			var home = rollRandomCity();
+			cities.push([home, rollRandomCity()]);
+			$( "#Body" ).append($('<p>', {
+				text: "Your home city is " + cities[i][0].name
+			}));
+			$( "#Body" ).append($('<p>', {
+				id: "City" + i,
+				text: "You are traveling from " + cities[i][0].name + " to " + cities[i][1].name
+			}));
+			$( "#Body" ).append($('<p>', {
+				id: "Payout" + i,
+				text: "Your payout is " + getPayout(cities[i][0].value, cities[i][1].value)
+			}));
+			$(  "#Body" ).append($('<button>', {
+				text: "Next",
+				id: "Next" + i,
+				value: i
+			}));
+			$( "#Next" + i ).click(function() {	var clicked = $(this).val();
+												updateNext(cities[clicked], "#City" + clicked, "#Payout" + clicked);});
+		}
 	}
-	$( "#Initial" ).attr("hidden", "true");
-	$( "#Go" ).attr("hidden", "true");
+	$( "#Initial" ).attr("hidden", true);
+	$( "#Go" ).attr("hidden", true);
 	
 }
 
