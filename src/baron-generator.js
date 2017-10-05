@@ -208,6 +208,9 @@ function getLocations() {
 	var clist = document.getElementById('StartList');
 	var clist2 = document.getElementById('EndList');
 	var optioned;
+	optioned = document.createElement('option');
+	optioned.innerHTML = "Random";
+	clist2.appendChild(optioned);
 	for (var i = 0; i < cities.length; i++) {
 		optioned = document.createElement('option');
 		optioned.innerHTML = cities[i];
@@ -252,10 +255,34 @@ function fixedStart() {
 	}
 }
 
-function set_up() {
+function setUpCalc() {
 	getLocations();
     document.getElementById('NewDest').onclick = randomDestination;
 	document.getElementById('SetFeatures').onclick = fixedStart;
 }
 
-window.onload = set_up;
+function goButton() {
+	if ($( "#Initial option:selected").text() === "Calculator") {
+		setUpCalc();
+		$( "#StartList" ).removeAttr("hidden");
+		$( "#EndList" ).removeAttr("hidden");
+		$( "#SetFeatures" ).removeAttr("hidden");
+		$( "#NewDest" ).removeAttr("hidden");
+	} else {
+		
+	}
+	$( "#Initial" ).attr("hidden", "true");
+	$( "#Go" ).attr("hidden", "true");
+	
+}
+
+function setUp() {
+	for (var i = 3; i <= 6; i++) {
+		$( "#Initial" ).append($('<option>', {
+			text: i}));
+	}
+	$( "#Initial").append($('<option>', {
+		text: "Calculator"}));
+	$( "#Go" ).click(goButton);
+}
+window.onload = setUp;
