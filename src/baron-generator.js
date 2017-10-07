@@ -255,7 +255,7 @@ function fixedStart() {
 		randomDestination();
 	} else {
 		$( "#Dest" ).html("You are traveling from " + $( "#StartList option:selected" ).text() + " to " + end);
-		$( "#Pay" ).html("Your payout is " + getPayout(getValue($( "#StartList option:selected" ).text()), getValue(end)));
+		$( "#Pay" ).html("Your payout is $" + getPayout(getValue($( "#StartList option:selected" ).text()), getValue(end)));
 	}
 }
 
@@ -269,15 +269,14 @@ function updateNext(cities, travelid, payoutid) {
 	cities[0] = cities[1];
 	cities[1] = rollRandomCity();
 	$( travelid ).text("You are traveling from " + cities[0].name + " to " + cities[1].name);
-	$( payoutid ).text("Your payout is " + getPayout(cities[0].value, cities[1].value));
+	$( payoutid ).text("Your payout is $" + getPayout(cities[0].value, cities[1].value));
 	
 }
 
 function goButton() {
 	if ($( "#Initial option:selected ").text() === "Calculator") {
 		setUpCalc();
-		$( "#StartList" ).removeAttr("hidden");
-		$( "#EndList" ).removeAttr("hidden");
+		$( "#Calc" ).removeAttr("hidden");
 		$( "#SetFeatures" ).removeAttr("hidden");
 		$( "#NewDest" ).removeAttr("hidden");
 	} else {
@@ -302,7 +301,7 @@ function goButton() {
 			}));
 			newPar.append($('<p>', {
 				id: "Payout" + i,
-				text: "Your payout is " + getPayout(cities[i][0].value, cities[i][1].value)
+				text: "Your payout is $" + getPayout(cities[i][0].value, cities[i][1].value)
 			}));
 			newPar.append($('<button>', {
 				text: "Next",
@@ -316,6 +315,7 @@ function goButton() {
 												updateNext(cities[clicked], "#City" + clicked, "#Payout" + clicked);});
 		}
 	}
+	$( "#Start" ).attr("hidden", true);
 	$( "#Initial" ).attr("hidden", true);
 	$( "#Go" ).attr("hidden", true);
 	

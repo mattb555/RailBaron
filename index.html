@@ -7,14 +7,21 @@
 
 	<body>
 		<p id="Start">
+			Decide amongst your group who is going first and what order you're using.<br/><br/>
+			Select your number of players and hit go, assign player 1 to the first box, player 2 to the second, etc.<br/><br/>
+			Information areas are available to fill in color and name of each player for personal reference.<br/><br/>
+			If you just want to query the payoff chart for a specific route, select "Calculator".<br/><br/>
+			<label>Number of Players?</label>
 			<select id="Initial"></select>
 			<button type="button" id="Go">Go</button>
 		</p>
 		<p id="Body">
 		</p>
-		<p>
-			<select id="StartList" hidden></select>
-			<select id="EndList" hidden></select>
+		<p id="Calc" hidden>
+			Leaving from?
+			<select id="StartList"></select><br/><br/>
+			Going to?
+			<select id="EndList"></select>
 		</p>
 		<p>
 			<button type="button" id="SetFeatures" hidden>Get Payout</button>
