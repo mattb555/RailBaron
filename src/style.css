@@ -1,0 +1,28 @@
+.red {
+	background-color: red;
+}
+
+.black {
+	background-color: black;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.white {
+	background-color: white;
+}
+
+.green {
+	background-color: green;
+}
+
+.player {
+	border-style: solid;
+	text-indent: 3%;
+}

@@ -285,24 +285,35 @@ function goButton() {
 		for (var i = 1; i <= parseInt($( "#Initial option:selected ").text()); i++) {
 			var home = rollRandomCity();
 			cities.push([home, rollRandomCity()]);
-			$( "#Body" ).append($('<p>', {
+			var newPar = $( "<p>", {
+				class: "player"
+			});
+			newPar.append($('<br/>'));
+			newPar.append(colorSelect());
+			newPar.append($('<input>', {
+				type: "text"
+			}));
+			newPar.append($('<p>', {
 				text: "Your home city is " + cities[i][0].name
 			}));
-			$( "#Body" ).append($('<p>', {
+			newPar.append($('<p>', {
 				id: "City" + i,
 				text: "You are traveling from " + cities[i][0].name + " to " + cities[i][1].name
 			}));
-			$( "#Body" ).append($('<p>', {
+			newPar.append($('<p>', {
 				id: "Payout" + i,
 				text: "Your payout is " + getPayout(cities[i][0].value, cities[i][1].value)
 			}));
-			$(  "#Body" ).append($('<button>', {
+			newPar.append($('<button>', {
 				text: "Next",
 				id: "Next" + i,
 				value: i
 			}));
 			$( "#Next" + i ).click(function() {	var clicked = $(this).val();
 												updateNext(cities[clicked], "#City" + clicked, "#Payout" + clicked);});
+			newPar.append($('<br/>'));
+			newPar.append($('<br/>'));
+			$( "#Body" ).append(newPar);
 		}
 	}
 	$( "#Initial" ).attr("hidden", true);
@@ -318,5 +329,31 @@ function setUp() {
 	$( "#Initial").append($('<option>', {
 		text: "Calculator"}));
 	$( "#Go" ).click(goButton);
+}
+
+function colorSelect() {
+	var $colorMe = $( "<select>");
+	$colorMe.append($("<option>", {
+		class: "white"
+	}));
+	$colorMe.append($("<option>", {
+		class: "black"
+	}));
+	$colorMe.append($("<option>", {
+		class: "red"
+	}));
+	$colorMe.append($("<option>", {
+		class: "green"
+	}));
+	$colorMe.append($("<option>", {
+		class: "yellow"
+	}));
+	$colorMe.append($("<option>", {
+		class: "blue"
+	}));
+	$colorMe.change(function() {
+		$colorMe.css("background-color", $colorMe.find(":selected").css("background-color"));
+	});
+	return $colorMe;
 }
 window.onload = setUp;
