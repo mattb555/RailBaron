@@ -309,11 +309,11 @@ function goButton() {
 				id: "Next" + i,
 				value: i
 			}));
-			$( "#Next" + i ).click(function() {	var clicked = $(this).val();
-												updateNext(cities[clicked], "#City" + clicked, "#Payout" + clicked);});
 			newPar.append($('<br/>'));
 			newPar.append($('<br/>'));
 			$( "#Body" ).append(newPar);
+			$( "#Next" + i ).click(function() {	var clicked = $(this).val();
+												updateNext(cities[clicked], "#City" + clicked, "#Payout" + clicked);});
 		}
 	}
 	$( "#Initial" ).attr("hidden", true);
@@ -332,7 +332,9 @@ function setUp() {
 }
 
 function colorSelect() {
-	var $colorMe = $( "<select>");
+	var $colorMe = $( "<select>", {
+		class: "colors"
+	});
 	$colorMe.append($("<option>", {
 		class: "white"
 	}));

@@ -25,4 +25,10 @@
 .player {
 	border-style: solid;
 	text-indent: 3%;
+	display: inline-block;
+	font-size: 10pt;
+}
+
+.colors {
+
 }
