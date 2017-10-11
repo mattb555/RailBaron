@@ -237,7 +237,7 @@ function rollRandomCity() {
 function randomDestination() {
 	var citySelected = rollRandomCity();
 	$( "#Dest" ).html("You are traveling from " + $( "#StartList option:selected" ).text() + " to " + citySelected.name);
-	$( "#Pay" ).html("Your payout is " + getPayout(getValue($( "#StartList option:selected" ).text()), citySelected.value));
+	$( "#Pay" ).html("Your payout is $" + getPayout(getValue($( "#StartList option:selected" ).text()), citySelected.value));
 }
 
 function getPayout(city1, city2) {

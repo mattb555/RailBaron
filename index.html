@@ -6,9 +6,12 @@
 	</head>
 
 	<body>
+		<br/>
+		<h1 id="Title">Rail Baron Tools</h1>
 		<p id="Start">
 			Decide amongst your group who is going first and what order you're using.<br/><br/>
 			Select your number of players and hit go, assign player 1 to the first box, player 2 to the second, etc.<br/><br/>
+			Alternatively, you can let players draft a starting position, that sounds fun!<br/><br/>
 			Information areas are available to fill in color and name of each player for personal reference.<br/><br/>
 			If you just want to query the payoff chart for a specific route, select "Calculator".<br/><br/>
 			<label>Number of Players?</label>
@@ -21,11 +24,11 @@
 			Leaving from?
 			<select id="StartList"></select><br/><br/>
 			Going to?
-			<select id="EndList"></select>
-		</p>
-		<p>
-			<button type="button" id="SetFeatures" hidden>Get Payout</button>
-			<button type="button" id="NewDest" hidden>Get New Destination</button>
+			<select id="EndList"></select><br/>
+			<p id="PayButtons">
+				<button type="button" id="SetFeatures" hidden>Get Payout</button>
+				<button type="button" id="NewDest" hidden>Get New Destination</button>
+			</p>
 		</p>
 		<p id="Dest"></p>
 		<p id="Pay"></p>

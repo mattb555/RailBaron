@@ -1,3 +1,30 @@
+#Title {
+	margin-left: 100px;
+}
+
+body {
+	border-left-style: solid;
+	border-left-color: red;
+	border-left-width: 20px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#start {
+	margin-left: 5px;
+}
+
+#calc {
+	margin-left: 100px;
+}
+
+#PayButtons {
+	margin-left: 100px;
+}
+
 .red {
 	background-color: red;
 }
@@ -23,6 +50,7 @@
 }
 
 .player {
+	margin-left: 5px;
 	border-style: solid;
 	text-indent: 3%;
 	display: inline-block;
